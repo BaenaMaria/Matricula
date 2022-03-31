@@ -1,0 +1,416 @@
+#conocenos-page{
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    .--aside{
+        min-height: auto;
+        .--content{
+            padding: 0px 200px 40px;
+            @include notebook{
+                padding: 0px 120px 40px;
+            }
+        }
+        .--copy{
+            top: 100px;
+        }
+        .--section {
+            padding-bottom: 40px;
+        }
+    }
+    #b_cabecera{
+        min-height: 223px;
+        background-color: $grey-light;
+        @include notebook{
+            min-height: 173px;
+        }
+        .--copy{
+            margin-left: 17%;
+            padding-top: 125px;
+            @include notebook{
+                padding-top: 83px;
+            }
+            .--title{
+                color: $grey-dark;
+                font-weight: 500;
+                font-size: 50px;
+                margin: 0;
+                text-transform: uppercase;
+                @include notebook{
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+    #b_lideres{
+        .--copy{
+            top: 100px;
+        }
+        .--lideres_title{
+            font-size: 70px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            margin-top: 75px;
+            @include notebook{
+                font-size: 60px;
+            }
+        }
+        .--lideres_subtitle{
+            font-size: 40px;
+            font-weight: 500;
+            span{
+                font-weight: 300;
+                color: $green;
+            }
+            @include notebook{
+                font-size: 27px;
+            }
+        }
+        .--lideres_copy{
+            font-size: 50px;
+            font-weight: normal;
+            max-width: 1040px;
+            line-height: 1.3em;
+            margin-bottom: 15%;
+            @include notebook{
+                font-size: 40px;
+                margin-bottom: 3%;
+                max-width: 850px;
+            }
+        }
+    }
+    #b_compromiso{
+        .--content{
+            padding: 0px 500px 30px 200px;
+            @include notebook{
+                padding: 0px 120px 30px 120px;
+            }
+        }
+        .--compromiso_title{
+           color: $blue;
+           font-size: 60px;
+           font-weight: normal;
+           text-transform: uppercase;
+           max-width: 85%;
+           @include notebook{
+               font-size: 45px;
+               max-width: 77%;
+           }
+        }
+        .--compromiso_copy{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 50px;
+            margin-bottom: 15%;
+            @include notebook{
+                margin-bottom: 3%;
+            }
+            .--compromiso_text{
+                display: flex;
+                align-items: center;
+                p{
+                    font-size: 35px;
+                    @include notebook{
+                        font-size: 24px;
+                    }
+                }
+            }
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+    #b_historia{
+        min-height: 75vh;
+        .--content{
+            padding-right: 0;
+        }
+        .--historia_title{
+            font-size: 70px;
+            font-weight: normal;
+            color: $grey-dark;
+            line-height: 1.3em;
+            text-transform: uppercase;
+            @include notebook{
+                font-size: 60px;
+            }
+        }
+        .--transition_niveles{
+            margin-top: 50px;
+            position: relative;
+            cursor: pointer;
+            .--content_transition{
+                background-color: $grey-light;
+                min-height: 380px;
+                max-width: 49%;
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                padding: 0 70px;
+                @include notebook{
+                    min-height: 240px;
+                    overflow: hidden;
+                }
+                .--b_date_transition{
+                    p{
+                        color: $blue-dark;
+                        font-weight: bold;
+                        font-size: 87px;
+                        text-transform: uppercase;
+                        display: none;
+                        margin-bottom: 0;
+                        margin-top: 0;
+                        line-height: 1.3em;
+                        @include notebook{
+                            font-size: 47px;
+                        }
+                        &.--active{
+                            display: block;
+                        }
+                    }
+                }
+                .--b_title_transition{
+                    h3{
+                        color: $blue-dark;
+                        font-weight: bold;
+                        font-size: 39px;
+                        text-transform: uppercase;
+                        display: none;
+                        margin-bottom: 0;
+                        margin-top: 0;
+                        line-height: 1.3em;
+                        @include notebook{
+                            font-size: 27px;
+                        }
+                        &.--active{
+                            display: block;
+                        }
+                    }
+                }
+                .--b_copy_transition{
+                    p{
+                        color: $blue-dark;
+                        font-weight: 300;
+                        font-size: 30px;
+                        display: none;
+                        margin-bottom: 0;
+                        margin-top: 0;
+                        line-height: 1.3em;
+                        @include notebook{
+                            font-size: 27px;
+                        }
+                        &.--active{
+                            display: block;
+                        }
+                    }
+                }
+            }
+            .--b_foto_transition{
+                position: absolute;
+                right: 30%;
+                top: 0;
+                bottom: 0;
+                @include notebook{
+                    width: 10.5%;
+                }
+                img{
+                    max-width: 100%;
+                    display: none;
+                    &.--active{
+                        display: block;
+                    }
+                }
+            }
+            .--mascara_transition{
+                position: absolute;
+                background-color: $grey-dark;
+                width: 30%;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                transition: 500ms all ease-in-out;
+                &.--transition{
+                    width: 100%;
+                    transition: 500ms all ease-in-out;
+                }
+                &::after{
+                    content: url('/images/SVG/arrow-next-big.svg');
+                    max-width: 200px;
+                    width: 100%;
+                    position: absolute;
+                    right: 200px;
+                    top: 40%;
+                    @include notebook{
+                        max-width: 180px;
+                        right: 100px;
+                    }
+                }
+            }
+            .--progress_transition{
+                position: absolute;
+                bottom: -10px;
+                height: 10px;
+                left: 0;
+                background-color: $green;
+                transition: 500ms width ease-in-out;
+                cursor: pointer;
+                @include notebook{
+                    height: 5px;
+                    bottom: -5px;
+                }
+                &[data="1"]{
+                    width: 11.11%;
+                }
+                &[data="2"]{
+                    width: 22.22%;
+                }
+                &[data="3"]{
+                    width: 33.33%;
+                }
+                &[data="4"]{
+                    width: 44.44%;
+                }
+                &[data="5"]{
+                    width: 55.55%;
+                }
+                &[data="6"]{
+                    width: 66.66%;
+                }
+                &[data="7"]{
+                    width: 77.77%;
+                }
+                &[data="8"]{
+                    width: 88.88%;
+                }
+                &[data="9"]{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    #b_profesorado{
+        min-height: 70vh;
+    }
+    #b_equipo{
+        min-height: 65vh;
+        @include notebook{
+            padding-right: 160px;
+        }
+        .--content{
+            display: grid;
+            grid-template-columns: 280px 1fr 1fr;
+            column-gap: 120px;
+            .--equipo_title{
+                margin-top: 80px;
+                font-size: 63px;
+                font-weight: normal;
+                color: $blue-dark;
+                text-transform: uppercase;
+                @include notebook{
+                    font-size: 45px;
+                }
+            }
+            .--equipo_column{
+                margin-top: 80px;
+                p{
+                    position: relative;
+                    font-size: 24px;
+                    font-weight: 300;
+                    color: $blue-dark;
+                    @include notebook{
+                        font-size: 17px;
+                    }
+                    span{
+                        position: absolute;
+                        top: 0;
+                        left: -1em;
+                        color: $green;
+
+                    }
+                }
+            }
+        }
+    }
+    #b_vida{
+        background-color: $blue-dark;
+        .--section {
+            padding-bottom: 90px;
+            @include notebook{
+                padding-bottom: 40px;
+            }
+            &::before {
+                bottom: -40px;
+            }
+        }
+        .--content {
+            padding: 0px 200px 90px;
+            @include notebook{
+                padding-bottom: 40px;
+            }
+        }
+        .--section_title{
+            color: $white;
+        }
+        .--vida_title{
+            font-size: 49px;
+            color: $white;
+            font-weight: normal;
+            text-transform: uppercase;
+            margin-top: 80px;
+            @include notebook{
+                font-size: 35px;
+            }
+            span{
+                color: $green;
+            }
+        }
+        .--vida_bloque{
+            display: grid;
+            grid-template-rows: 290px 1fr;
+            row-gap: 50px;
+            @include notebook{
+                row-gap: 40px;
+                grid-template-rows: auto 1fr;
+            }
+            img{
+                width: 100%;
+            }
+            .--vida_fila_1{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 1fr;
+                grid-column-gap: 60px;
+                grid-row-gap: 60px;
+                @include notebook{
+                    grid-column-gap: 40px;
+                    grid-row-gap: 40px;
+                }
+            }
+            .--vida_fila_2{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-column-gap: 50px;
+                grid-row-gap: 35px;
+                margin-bottom: 30px;
+                .--vida_fila_2_div_1 {
+                     grid-area: 1 / 1 / 3 / 3; 
+                    }
+                .--vida_fila_2_div_2 {
+                     grid-area: 1 / 3 / 2 / 4; 
+                    }
+                .--vida_fila_2_div_3 {
+                     grid-area: 1 / 4 / 2 / 5; 
+                    }
+                .--vida_fila_2_div_4 {
+                     grid-area: 2 / 3 / 3 / 4; 
+                    }
+                .--vida_fila_2_div_5 {
+                     grid-area: 2 / 4 / 3 / 5; 
+                    }
+            }
+        }
+    }
+}

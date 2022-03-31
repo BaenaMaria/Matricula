@@ -1,0 +1,1109 @@
+// Defaults
+
+body {
+    font-family: $default;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    &.--overflow{
+        overflow-y: hidden;
+        min-height: 100vh;
+    }
+}
+.--wrapper {
+    margin: 0 auto;
+    min-height: 100vh;
+    max-width: 1920px;
+}
+b {
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+img{
+    display:block
+}
+p{
+    margin-top: 0;
+    color: $grey-dark;
+    line-height: 1.3em;
+}
+
+.--cta{
+    background-color: $green;
+    display: block;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center;
+    max-width: max-content;
+    padding: 5px 30px;
+    text-transform: uppercase;
+    color: $grey-dark;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: 500ms opacity ease-in-out;
+    &:hover{
+        opacity: .7;
+        transition: 500ms opacity ease-in-out;
+    }
+    @include notebook{
+        font-size: 22px;
+    }
+} 
+
+.--cta_sub{
+    max-width: max-content;
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 0;
+    color: $grey-dark;
+    @include notebook{
+        font-size: 22px;
+    }
+}
+
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    max-width: 1920px;
+    margin: 0 auto;
+    transition: 300ms all ease-in-out;
+    .--nav_primary {
+        display: grid;
+        grid-template-columns: 330px 2fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "logo menu submenu"
+        "desplegable desplegable desplegable";
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 1px 5px 1px rgb(0, 0, 0, 20%);
+        @include notebook{
+            grid-template-columns: 240px 2fr 1fr;
+        }
+        @include notebook-small{
+            grid-template-columns: 240px 50% 1fr;
+        }
+        @include ipad-portrait{
+            background-color: $blue-dark;
+            grid-template-columns: 240px 69% 1fr;
+        }
+        @include mobile{
+            grid-template-columns: 140px 1fr;
+            grid-template-areas:
+            "logo menu"
+            "desplegable desplegable";
+        }
+        .--logo {
+            grid-area: logo;
+            width: 330px;
+            display: flex;
+            justify-content: center;
+            background-color: $blue-dark;
+            height: 100%;
+            align-items: flex-end;
+            @include notebook{
+                width: 240px;
+            }
+            @include mobile{
+                width: 140px;
+            }
+            img {
+                max-width: 190px;
+                width: 100%;
+                position: relative;
+                z-index: 1;
+                bottom: -23px;
+                @include notebook{
+                    bottom: -15px;
+                    max-width: 140px;
+                }
+            }
+        }
+        .--menu {
+            grid-area: menu;
+            // background-color: red;
+            display: flex;
+            flex-flow: row;
+            justify-content: flex-start;
+            align-items: flex-end;
+            padding-left: 20%;
+            background-color: $white;
+            @include notebook{
+                justify-content: flex-end;
+                padding-left: 0;
+                padding-right: 5%;
+            }
+            @include ipad-portrait{
+               background-color: $blue-dark;
+            }
+            .--acceder_mobile{
+                display: none;
+                color: $green;
+                font-size: 12px;
+                text-transform: uppercase;
+                position: relative;
+                top: -10px;
+                right: 60px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                @include ipad-portrait{
+                    right: 65px;
+                    display: block;
+                }
+                @include mobile{
+                    right: 67px;
+                    display: block;
+                }
+            }
+            .--phone_tablet{
+                display: none;
+                color: $green;
+                font-size: 12px;
+                text-transform: uppercase;
+                position: relative;
+                top: -10px;
+                right: 90px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                @include ipad-portrait{
+                    display: block;
+                }
+                @include mobile{
+                    display: none;
+                }
+            }
+            .--menu_list {
+                @include ipad-portrait{
+                    display: none;
+                }
+                padding-left: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                display: flex;
+                flex-flow: row;
+                .--menu_list_item {
+                    display: inline-block;
+                    list-style: none;
+                    text-transform: uppercase;
+                    color: $grey-dark;
+                    padding: 10px 15px 20px;
+                    position: relative;
+                    font-size: 16px;
+                    cursor: pointer;
+                    @include notebook{
+                        font-size: 12px;
+                    }
+                    &::before {
+                        content: "";
+                        width: 2px;
+                        height: 16px;
+                        background-color: $grey-light;
+                        position: absolute;
+                        left: 101%;
+                        top: 30%;
+                    }
+                    &::after {
+                        content: "";
+                        width: 0px;
+                        transition: 500ms width ease-in-out;
+                        position: absolute;
+                        height: 5px;
+                        bottom: 0;
+                        background-color: $blue-dark;
+                        right: 0;
+                        left: auto;
+                    }
+                    &:nth-last-child(1) {
+                        &::before {
+                            display: none;
+                        }
+                    }
+                    &.--active,
+                    &:hover {
+                        &::after {
+                            content: "";
+                            width: 100%;
+                            transition: 500ms width ease-in-out;
+                        }
+                    }
+                    &.--go_left {
+                        &::after {
+                            content: "";
+                            transition: 500ms width ease-in-out;
+                            right: 0;
+                            left: auto;
+                        }
+                    }
+                    &.--go_right {
+                        &::after {
+                            content: "";
+                            left: 0;
+                            right: auto;
+                            transition: 500ms width ease-in-out;
+                        }
+                    }
+                }
+            }
+        }
+        .--submenu {
+            @include ipad-portrait{
+                display: none;
+            }
+            grid-area: submenu;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: flex-end;
+            padding-right: 50px;
+            background-color: $white;
+            .--submenu_list {
+                padding-left: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                display: flex;
+                flex-flow: row;
+                justify-content: space-around;
+                width: 100%;
+                .--submenu_list_item {
+                    display: inline-block;
+                    list-style: none;
+                    text-transform: uppercase;
+                    color: $grey-dark;
+                    // background-color: yellow;
+                    padding: 10px 15px 20px;
+                    position: relative;
+                    font-size: 16px;
+                    cursor: pointer;
+                    @include notebook{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .--icon_menu{
+            grid-area: menu;
+            display: none;
+            flex-flow: column;
+            align-items: center;
+            position: fixed;
+            cursor: pointer;
+            flex: 0;
+            padding: 5px;
+            width: 35px;
+            height: 35px;
+            right: 4%;
+            border-radius: 100px;
+            justify-content: center;
+            z-index: 9;
+            top: 10px;
+            transition: 300ms top ease-in-out;
+            @include ipad-portrait{
+                display: flex;
+            }
+            @include tablet{
+                display: flex;
+            }
+            .--icon_menu_line{
+                position: relative;
+                width: 25px;
+                height: 3px;
+                border-radius: 5px;
+                background: $green;
+                transition: .5s transform;
+                &:nth-child(1){
+                    margin-bottom: 5px;
+                }
+                &:nth-child(2){
+                    margin-bottom: 5px;
+                }
+            }
+        }
+        &.--open{
+            .--icon_menu{
+                .--icon_menu_line{
+                    position: absolute;
+                    margin-bottom: 0;
+                    transition: .5s transform;
+                    &:nth-child(1){
+                        transform: rotate(-45deg);
+                    }
+                    &:nth-child(3){
+                        transform: rotate(45deg);
+                    }
+                    &:nth-child(2){
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+    .--desplegable {
+        @include ipad-portrait{
+            display: none;
+        }
+        grid-area: desplegable;
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background-color: aqua;
+        height: 90px;
+        z-index: 1;
+        transform: translateY(-100px);
+        transition: 0.3s transform ease-in-out;
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        align-items: flex-end;
+        padding-left: 320px;
+        background-color: $grey-dark;
+        @include notebook{
+            padding-left: 247px;
+            height: 60px;
+        }
+        &.--desplegado {
+            transform: translateY(0px);
+            transition: 0.3s transform ease-in-out;
+        }
+        &.--deplegable_list_rrss {
+            background-color: $green;
+            justify-content: flex-end;
+            padding-right: 12.8%;
+            @include notebook{
+                padding-right: 11.8%;
+            }
+            .--mascara {
+                background: linear-gradient(90deg, $green 42%, rgba(0, 0, 0, 0) 100%);
+            }
+            .--deplegable_list {
+                transition-delay: 0s;
+            }
+        }
+        .--mascara {
+            height: 90px;
+            width: 330px;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            background: linear-gradient(90deg, $grey-dark 42%, rgba(0, 0, 0, 0) 100%);
+            @include notebook{
+                width: 240px;
+            }
+        }
+        .--deplegable_list {
+            padding-left: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            position: absolute;
+            display: flex;
+            overflow-x: hidden;
+            transition: 0.2s transform ease-in-out;
+            transform: translateX(-100vw);
+            transition-delay: 0.3s;
+            &[data="rrss"] {
+                transform: translateX(100vw);
+                transition-delay: 0s;
+                .--desplegable_list_item {
+                    color: $grey-dark;
+                    font-weight: 500;
+                    &::after {
+                        background-color: $grey-dark;
+                    }
+                }
+            }
+            &.--visible {
+                transform: translateX(0);
+                transition: 0.5s transform ease-in-out;
+                transition-delay: 0.3s;
+            }
+            .--desplegable_list_item {
+                display: inline-block;
+                list-style: none;
+                text-transform: uppercase;
+                color: $white;
+                // background-color: yellow;
+                padding: 0px 15px 35px;
+                position: relative;
+                font-size: 16px;
+                cursor: pointer;
+                @include notebook{
+                    font-size: 12px;
+                    padding-bottom: 25px;
+                }
+                &::after {
+                    content: "";
+                    height: 0px;
+                    transition: 0.2s height ease-in-out;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: $green;
+                }
+                &.--active,
+                &:hover {
+                    &::after {
+                        content: "";
+                        height: 5px;
+                        transition: 0.2s height ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+    .--content_menu{
+        max-width: 100%;
+        margin: 0 auto;
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-color: $grey-dark;
+        display: none;
+        .--links{
+            padding: 0 64px;
+            position: absolute;
+            transform: translateX(100vw);
+            width: 70%;
+            transition: .5s transform;
+            &[data-select="6"]{
+                li{
+                    color: $green;
+                }
+            }
+            &.--content_menu_visible{
+                li{
+                    transition: .5s transform;
+                    transform: translateX(0) !important;
+                    &:nth-child(1){
+                        transition-delay: 150ms;
+                    }
+                    &:nth-child(2){
+                        transition-delay: 200ms;
+                    }
+                    &:nth-child(3){
+                        transition-delay: 250ms;
+                    }
+                    &:nth-child(4){
+                        transition-delay: 300ms;
+                    }
+                    &:nth-child(5){
+                        transition-delay: 350ms;
+                    }
+                    &:nth-child(6){
+                        transition-delay: 400ms;
+                    }
+                }
+            }
+            &.--left_menu{
+                transform: translateX(-100vw);
+                transition: .5s transform;
+                li{
+                    transition: .5s transform;
+                    transform: translateX(-100vw);
+                }
+            }
+            &.--open_menu{
+                transform: translateX(0) !important;
+                transition: .5s transform;
+            }
+            .--content_menu_link{
+                position: relative;
+                &::before{
+                    content: url('/images/svg/arrow-green.svg');
+                    width: 10px;
+                    height: auto;
+                    position: absolute;
+                    right: 0;
+                    top: 38%;
+                }
+            }
+            li{
+                border-bottom: 1px solid $white;
+                color: $white;
+                padding: 35px 0;
+                list-style: none;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.--llamar_mobile{
+    display: none;
+    @include mobile{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+        background-color: $blue-dark;
+        z-index: 999;
+        p{
+            text-align: center;
+            margin-bottom: 0;
+            color: $green;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+// Aside
+
+.--aside{
+    display: grid;
+    grid-template-columns: 121px 1fr;
+    grid-template-areas: "section content";
+    min-height: 100vh;
+    position: relative;
+    @include desktop-big{
+        min-height: 80vh;
+    }
+    @include ipad-landscape{
+        min-height: 80vh;
+        grid-template-columns: 87px 1fr;
+    }
+    @include ipad-portrait{
+        min-height: auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: "content";
+    }
+    @include tablet{
+        border-bottom: 1px solid $grey-light;
+        max-width: 77%;
+        margin: 0 auto;
+    }
+    @include mobile{
+        max-width: 100%;
+    }
+    .--copy{
+        top: 70px;
+        text-transform: uppercase;
+        font-size: 26px;
+        position: absolute;
+        left: 55px;
+        width: 50px;
+        @include notebook{
+            font-size: 19px;
+        }
+        @include ipad-landscape{
+            left: 25px;
+        }
+         @include ipad-portrait{
+        display: none;
+        }
+        .--section_title{
+            transform: rotate(90deg);
+            white-space: nowrap;
+        }
+    }
+    .--section{
+        grid-area: section;
+        height: 100%;
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            background-color: $grey-light;
+            width: 1px;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            background-color: $grey-light;
+            height: 1px;
+        }
+         @include ipad-portrait{
+        display: none;
+        }
+    }
+    .--content{
+        grid-area: content;
+        height: 100%;
+        position: relative;
+        padding: 0 100px;
+        .--section_title{
+            text-transform: uppercase;
+            font-size: 26px;
+            padding-top: 5%;
+            @include tablet{
+                font-size: 12px;
+            }
+        }
+        @include ipad-portrait{
+         padding: 2% 10%;
+        }
+        @include tablet{
+            padding: 2% 0;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            right: 80px;
+            background-color: $grey-light;
+            height: 1px;
+            @include tablet{
+                left: 0;
+                right: 0;
+                display: none;
+            }
+        }
+    }
+}
+
+// Footer
+
+#footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 120px 74px 140px;
+    @include notebook{
+        padding: 80px 74px 140px;
+    }
+    @include tablet{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto, 1fr;
+        padding: 70px 38px 100px;
+        row-gap: 40px;
+    }
+    .--footer_escudo{
+        img{
+            max-width: 92px;
+            @include notebook{
+                max-width: 65px;
+            }
+        }
+    }
+    .--footer_legal{
+        text-align: right;
+        @include tablet{
+            text-align: left;
+        }
+        p{
+            font-size: 15px;
+            font-weight: 300;
+            color: $blue-dark;
+            @include notebook{
+                font-size: 12px;
+            }
+            @include tablet{
+                font-size: 14px;
+            }
+            span{
+                @include tablet{
+                    display: none;
+                }
+            }
+            a{
+                @include tablet{
+                    display: block;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+// Profesorado
+
+#b_profesorado{
+    .--content{
+        padding-right: 0 !important;
+        @include tablet{
+            width: 100%;
+            min-width: 100%;
+        }
+        .--section_title{
+            @include tablet{
+                max-width: 80%;
+                    margin-left: auto;
+                    margin-right: auto;
+            }
+        }
+        .--profesorado{
+            display: grid;
+            grid-template-columns: 604px auto ;
+            grid-template-areas: "profesorado_content_1 profesorado_content_2";
+            column-gap: 125px;
+            position: relative;
+            margin-top: 120px;
+            min-height: 530px;
+            @include notebook{
+                grid-template-columns: 430px auto;
+                column-gap: 80px;
+            }
+            @include tablet{
+                grid-template-columns: auto;
+                grid-template-rows: 400px 240px;
+                grid-template-areas: "profesorado_content_1" 
+                "profesorado_content_2";
+                padding-right: 50px;
+                min-height: 700px;
+                margin-top: 40px;
+            }
+            .--profesorado_content_1{
+                grid-area: profesorado_content_1;
+                position: relative;
+                .--profesorado_foto_principal{
+                    position: relative;
+                    min-height: 435px;
+                    background-color: $white;
+                    overflow: hidden;
+                    width: 600px;
+                    @include notebook{
+                        width: 430px;
+                        min-height: 310px;
+                    }
+                    @include tablet{
+                        width: 100%;
+                    }
+                    .--profesorado_mascara_img_principal{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        transition: .5s all ease-in-out;
+                        background-size: cover;
+                        &[data="1"]{
+                            background-image: url('/images/foto-1.jpg');
+                            z-index: 3;
+                        }
+                        &[data="2"]{
+                            background-image: url('/images/foto-2.jpg');
+                            z-index: 2;
+                        }
+                        &[data="3"]{
+                            z-index: 1;
+                            background-image: url('/images/fondo_home.webp');
+                        }
+                    }
+                    
+                }
+                .--profesorado_copy{
+                    padding-left: 50px;
+                    position: absolute;
+                    z-index: 2;
+                    .--profesorado_nombre{
+                        margin-top: 20px;
+                        color: $blue;
+                        font-size: 37px;
+                        font-weight: bold;
+                        margin-bottom: 0;
+                        text-transform: uppercase;
+                        transition: .3s color;
+                        @include notebook{
+                            font-size: 27px;
+                        }
+                        @include tablet{
+                            font-size: 20px;
+                            margin-bottom: 2px;
+                        }
+                    }
+                    .--profesorado_cargo{
+                        font-size: 23px;
+                        font-weight: normal;
+                        bottom: -30px;
+                        transition: .3s color;
+                        @include notebook{
+                            font-size: 17px;
+                        }
+                    }
+                    &[data="2"]{
+                        .--profesorado_nombre{
+                            color: $white;
+                            transition: .3s color;
+                            @include tablet{
+                                color: $blue;
+                            }
+                        }
+                        .--profesorado_cargo{
+                            color: $white;
+                            transition: .3s color;
+                            @include tablet{
+                                color: $grey-dark;
+                            }
+                        }
+                    }
+                    &[data="3"]{
+                        .--profesorado_nombre{
+                            color: $white;
+                            transition: .3s color;
+                            @include tablet{
+                                color: $blue;
+                            }
+                        }
+                        .--profesorado_cargo{
+                            color: $white;
+                            transition: .3s color;
+                            @include tablet{
+                                color: $grey-dark;
+                            }
+                        }
+                    }
+                }
+            }
+            .--profesorado_content_2{
+                grid-area: profesorado_content_2;
+                position: relative;
+                .--profesorado_foto_secundaria{
+                    position: absolute;
+                    top: 0;
+                    left: -75px;
+                    z-index: 1;
+                    min-height: 320px;
+                    min-width: 445px;
+                    overflow: hidden;
+                    @include notebook{
+                        min-height: 229px;
+                        min-width: 317px;
+                        left: -40px;
+                    }
+                    @include tablet{
+                        display: none;
+                    }
+                    .--profesorado_mascara_img_secundaria{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        transition: .5s all ease-in-out;
+                        background-size: cover;
+                        &[data="1"]{
+                            background-image: url('/images/foto-1.jpg');
+                            z-index: 3;
+                        }
+                        &[data="2"]{
+                            background-image: url('/images/foto-2.jpg');
+                            z-index: 2;
+                        }
+                        &[data="3"]{
+                            z-index: 1;
+                            background-image: url('/images/fondo_home.webp');
+                        }
+                    }
+                }
+                .--profesorado_texto{
+                    top: 130px;
+                    height: 380px;
+                    display: flex;
+                    align-items: flex-end;
+                    padding: 30px 80px 30px 40px;
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    z-index: 1;
+                    @include notebook{
+                        height: 240px;
+                    }
+                    @include tablet{
+                        height: auto;
+                        top: 180px;
+                    }
+                    p{
+                        max-width: 407px;
+                        color: $white;
+                        font-size: 17px;
+                        font-weight: normal;
+                        font-style: italic;
+                        position: absolute;
+                        transition: .5s color ease-in-out;
+                        @include notebook{
+                            font-size: 15px;
+                        }
+                        @include tablet{
+                            color: $grey-dark;
+                            padding-right: 20px;
+                        }
+                    }
+                    &[data="3"]{
+                        p{
+                            color: $grey-dark;
+                            transition: .5s color ease-in-out;
+                        }
+                    }
+                }
+                .--profesorado_bloque{
+                    position: relative;
+                    top: 130px;
+                    height: 380px;
+                    display: flex;
+                    background-color: $blue;
+                    align-items: flex-end;
+                    padding: 30px 80px;
+                    position: absolute;
+                    right: 0%;
+                    left: 0%;
+                    transition: 500ms all ease-in-out;
+                    @include notebook{
+                        height: 240px;
+                    }
+                    @include tablet{
+                        display: none;
+                    }
+                    &[data="2"]{
+                        transition: 500ms all ease-in-out;
+                        left: -85.5%;
+                    }
+                    &[data="3"]{
+                        transition: 500ms all ease-in-out;
+                        left: -85.5%;
+                        right: 104%;
+                    }
+                }
+            }
+            .--profesorado_franja{
+                position: absolute;
+                top: -60px;
+                bottom: -110px;
+                right: 20%;
+                width: 66px;
+                transition: 500ms all ease-in-out;
+                opacity: 1;
+                background-color: $grey-light;
+                cursor: pointer;
+                z-index: 1;
+                @include notebook{
+                    top: 0px;
+                    bottom: 40px;
+                    right: 10%;
+                    width: 44px;
+                }
+                @include tablet{
+                    width: 50px;
+                    right: 0;
+                }
+                &::after{
+                    content: url('/images/svg/arrow-next-blue.svg');
+                    width: 40px;
+                    height: auto;
+                    position: absolute;
+                    right: 15px;
+                    bottom: 2%;
+                    @include notebook{
+                        width: 25px;
+                        right: 11px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 2 Columns
+
+.--2_columns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 150px;
+    @include notebook{
+        column-gap: 120px;
+    }
+}
+.--3_columns{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 90px;
+    @include notebook{
+        column-gap: 60px;
+    }
+}
+.--2_rows{
+    display: grid;
+    grid-template-rows: auto auto;
+    row-gap: 150px;
+    @include notebook{
+        row-gap: 120px;
+    }
+}
+
+// CHATBOT
+
+
+#buttonContainer{
+    z-index: 3!important;
+    @include ipad-portrait{
+        bottom: 5%;
+        right: -2%;
+    }
+    @include tablet{
+        bottom: 13%;
+        right: 5%;
+    }
+    @include mobile{
+        bottom: 5%;
+        right: -2%;
+    }
+    #imgAlma{
+        width: 53px;
+        height: 53px;
+        background-color: transparent;
+        box-shadow: none !important;
+        // border: 2px solid $green;
+        // animation-name: rotacion;
+        // animation-duration: 300ms;
+        // animation-delay: 3s;
+        // animation-iteration-count: infinite;
+        // transform: rotate(0deg)
+    }
+    .notificacionAlma{
+        top: 8px;
+        right: 22px;
+    }
+}
+@keyframes rotacion{
+    0% { transform: rotate(0deg) }
+    50% { transform: rotate(-10deg) }
+    100% { transform: rotate(0deg) }
+}
+.neutro{
+    background-color: $green !important;
+    color: $grey-dark !important;
+}
+
+#bloqueDespliegueAlmaMovil{
+    @include ipad-portrait{
+        bottom: 13%;
+    }
+    @include tablet{
+        bottom: 13%;
+    }
+    #superiorIframeMovil, .superiorInferiorMovil{
+        background-color: $white;
+    }
+}
+#iframeAlma{
+    z-index: 99999999!important;
+    @include ipad-portrait{
+        bottom: 7.7vh;
+    }
+    @include tablet{
+        bottom: 7.7vh;
+    }
+    @include mobile{
+        bottom: 2.7vh;
+    }
+}

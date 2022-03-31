@@ -1,0 +1,212 @@
+#metodologia-page{
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    .--aside{
+        min-height: auto;
+        .--content{
+            padding: 0px 200px 40px;
+            @include notebook{
+                padding: 0px 230px 40px 120px;
+            }
+        }
+        .--copy{
+            top: 100px;
+        }
+        .--section {
+            padding-bottom: 40px;
+        }
+    }
+    #b_cabecera{
+        min-height: 223px;
+        background-color: $grey-light;
+        @include notebook{
+            min-height: 173px;
+        }
+        .--copy{
+            margin-left: 17%;
+            padding-top: 125px;
+            @include notebook{
+                padding-top: 83px;
+            }
+            .--title{
+                color: $grey-dark;
+                font-weight: 500;
+                font-size: 50px;
+                margin: 0;
+                text-transform: uppercase;
+                @include notebook{
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+    #b_pilares{
+        .--copy{
+            top: 100px;
+        }
+        .--title{
+            font-size: 70px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            margin-top: 75px;
+            @include notebook{
+                font-size: 60px;
+            }
+        }
+        .--subtitle{
+            font-size: 38px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            position: relative;
+            margin-bottom: 150px;
+            &::before{
+                content:"+";
+                color: $green;
+                position: absolute;
+                left: -1em;
+            }
+            @include notebook{
+                font-size: 27px;
+            }
+        }
+        .--pilares_bloque_copy{
+            .--pilares_bloque_copy_title{
+                font-size: 38px;
+                font-weight: 500;
+                text-transform: uppercase;
+                color: $grey-dark;
+                line-height: 1.3em;
+                margin-top: 0;
+                margin-bottom: 20px;
+                @include notebook{
+                    font-size: 27px;
+                }
+            }
+            .--pilares_boque_copy_text{
+                font-weight: 300;
+                font-size: 33px;
+                margin-bottom: 50px;
+                @include notebook{
+                    font-size: 24px;
+                }
+            }
+        }
+        .--pilares_bloque_img{
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+    #b_especialistas{
+        .--2_columns{
+                margin-top: 50px;
+        }
+        .--title{
+            font-size: 55px;
+            font-weight: normal;
+            color: $blue;
+            line-height: 1.3em;
+            text-transform: uppercase;
+            @include notebook{
+                font-size: 45px;
+            }
+        }
+        .--especialistas_bloque_copy_1{
+            display: flex;
+            align-items: center;
+        }
+        p{
+            font-weight: 300;
+            font-size: 33px;
+            @include notebook{
+                font-size: 24px;
+            }
+        }
+        .--pilares_bloque_copy_title{
+            font-size: 38px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            @include notebook{
+                font-size: 27px;
+            }
+        }
+        .--pilares_boque_copy_text{
+            margin-bottom: 40px;
+        }
+        img{
+            max-width: 100%;
+        }
+    }
+    #b_experiencias{
+        .--2_columns{
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+        .--title{
+            font-size: 55px;
+            font-weight: normal;
+            color: $blue;
+            line-height: 1.3em;
+            margin-top: 0;
+            text-transform: uppercase;
+            @include notebook{
+                font-size: 45px;
+            }
+        }
+        .--experiencias_bloque_copy_1{
+            display: flex;
+            align-items: center;
+        }
+        p{
+            font-weight: 300;
+            font-size: 33px;
+            @include notebook{
+                font-size: 24px;
+            }
+        }
+        .--experiencias_bloque_copy{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .--quote{
+            margin-top: 0;
+            font-size: 38px;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-style: italic;
+            padding-right: 100px;
+            @include notebook{
+                padding-right: 0;
+                font-size: 27px;
+            }
+            @include tablet{
+                font-size: 22px;
+            }
+            b{
+                font-weight: 500;
+            }
+        }
+        .--author{
+            font-size: 24px;
+            font-weight: bold;
+            font-style: italic;
+            @include notebook{
+                font-size: 17px;
+            }
+        }
+        img{
+            max-width: 100%;
+        }
+    }
+}

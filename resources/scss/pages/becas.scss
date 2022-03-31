@@ -1,0 +1,306 @@
+#becas-page{
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    .--aside{
+        min-height: auto;
+        .--content{
+            padding: 0px 230px 40px 120px;
+            @include notebook{
+                padding: 0px 230px 40px 120px;
+            }
+        }
+        .--copy{
+            top: 100px;
+        }
+        .--section {
+            padding-bottom: 40px;
+        }
+    }
+    #b_cabecera{
+        min-height: 223px;
+        background-color: $grey-light;
+        @include notebook{
+            min-height: 173px;
+        }
+        .--copy{
+            margin-left: 17%;
+            padding-top: 125px;
+            @include notebook{
+                padding-top: 83px;
+            }
+            .--title{
+                color: $grey-dark;
+                font-weight: 500;
+                font-size: 50px;
+                margin: 0;
+                text-transform: uppercase;
+                @include notebook{
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+    #b_admisiones{
+        .--copy{
+            top: 100px;
+        }
+        .--title{
+            font-size: 70px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            margin-top: 75px;
+            @include notebook{
+                font-size: 60px;
+            }
+        }
+        .--subtitle{
+            font-size: 38px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            position: relative;
+            margin-bottom: 50px;
+            max-width: 1000px;
+            &::before{
+                content:"+";
+                color: $green;
+                position: absolute;
+                left: -1em;
+            }
+            @include notebook{
+                font-size: 27px;
+            }
+        }
+        .--admision_bloque_formulario{
+            .--form_bloque{
+                margin-bottom: 20px;
+                input{
+                    font-size: 39px;
+                    color: $grey-dark;
+                    border: none;
+                    border-bottom: 1px solid $grey-light;
+                    padding: 15px 10px;
+                    font-weight: 500;
+                    @include notebook{
+                        font-size: 27px;
+                    }
+                    &::placeholder{
+                        font-size: 39px;
+                        color: $grey-light;
+                        font-weight: 500;
+                        @include notebook{
+                            font-size: 27px;
+                        }
+                    }
+                    &[type="text"],&[type="email"]{
+                        display: block;
+                        max-width: 100%;
+                        width: 100%;
+                    }
+                }
+                select{
+                    display: block;
+                    max-width: 100%;
+                    width: 100%;
+                    font-size: 30px;
+                    color: $grey-dark;
+                    border: none;
+                    border-bottom: 1px solid $grey-light;
+                    padding: 15px 10px;
+                    font-weight: 500;
+                    @include notebook{
+                        font-size: 27px;
+                    }
+                    &::placeholder{
+                        font-size: 30px;
+                        color: $grey-light;
+                        font-weight: 500;
+                        @include notebook{
+                            font-size: 27px;
+                        }
+                    }
+                }
+                label{
+                    font-size: 33px;
+                    font-weight: 300;
+                    display: block;
+                    color: $grey-dark;
+                    margin-bottom: 30px;
+                    @include notebook{
+                        font-size: 24px;
+                    }
+                    span{
+                        font-weight: bold;
+                        font-size: 20px;
+                        @include notebook{
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+            p{
+                font-size: 25px;
+                font-weight: 300;
+                @include notebook{
+                    font-size: 20px;
+                }
+            }
+            .--plan_estudios_input{
+                margin: 50px 0;
+            }
+            .--formacion_previa_input{
+                margin-bottom: 25px;
+                padding-bottom: 25px;
+                border-bottom: 1px solid $grey-light;
+                label{
+                    margin-bottom: 30px;
+                }
+                input{
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+            }
+            .--objetivo_input{
+                margin-bottom: 25px;
+                padding-bottom: 25px;
+                border-bottom: 1px solid $grey-light;
+                label{
+                    margin-bottom: 30px;
+                }
+                input{
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+            }
+            .--aviso_input{
+                p{
+                    font-size: 20px;
+                    font-weight: 300;
+                    @include notebook{
+                        font-size: 15px;
+                    }
+                }
+            }
+            .--cta_submit{
+                background-color: $green;
+                display: block;
+                font-weight: 500;
+                font-size: 38px;
+                text-align: center;
+                max-width: max-content;
+                padding: 20px 30px;
+                text-transform: uppercase;
+                color: $grey-dark;
+                margin-top: 80px;
+                cursor: pointer;
+                transition: 500ms opacity ease-in-out;
+                &:hover{
+                    opacity: .7;
+                    transition: 500ms opacity ease-in-out;
+                }
+                @include notebook{
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+    #b_becas{
+        .--2_columns{
+            margin-top: 75px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto 1fr;
+            row-gap: 50px;
+        }
+        .--becas_bloque_title{
+            grid-area: 1 / 1 / 2 / 2;
+            .--title{
+                font-size: 55px;
+                font-weight: normal;
+                color: $blue;
+                line-height: 1.3em;
+                text-transform: uppercase;
+                margin: 0;
+                @include notebook{
+                    font-size: 45px;
+                }
+            }
+        }
+        .--becas_bloque_copy_1{
+            grid-area: 1 / 2 / 3 / 3;
+            p{
+                font-weight: 300;
+                font-size: 33px;
+                @include notebook{
+                    font-size: 24px;
+                }
+            }
+        }
+        .--becas_bloque_img{
+            grid-area: 2 / 1 / 3 / 2;
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+    #b_cifras{
+        .--title{
+            font-size: 70px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: $grey-dark;
+            line-height: 1.3em;
+            margin-top: 75px;
+            @include notebook{
+                font-size: 60px;
+            }
+        }
+        .--cifras_tabla{
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 100px;
+            @include notebook{
+                max-width: 600px;
+            }
+            .--cifras_tabla_item{
+                margin-bottom: 100px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid $grey-light;
+                display: grid;
+                column-gap: 30px;
+                grid-template-columns: 60% 40%;
+                align-items: end;
+                p{
+                    margin-bottom: 0;
+                }
+                .--cifras_tabla_item_datos{
+                    p{
+                        font-size: 90px;
+                        font-weight: bold;
+                        color: $grey-dark;
+                        @include notebook{
+                            font-size: 61px;
+                        }
+                        span{
+                            color: $green;
+                        }
+                    }
+                }
+                .--cifras_tabla_item_copy{
+                    p{
+                        font-size: 33px;
+                        font-weight: 300;
+                        color: $grey-dark;
+                        @include notebook{
+                            font-size: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

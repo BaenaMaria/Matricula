@@ -1,0 +1,77 @@
+//colors
+
+$blue-dark : #01193f;
+$grey-dark : #3d4762;
+$grey-light: #dbdde1;
+$blue: #0633c9;
+$green : #62fb9e;
+$white : #fff;
+
+//font-family
+
+$default: 'quasimoda';
+
+
+//mixin
+@mixin desktop-big {
+  @media only screen and (min-width: 1921px) {
+    @content;
+  }
+}
+@mixin height-big {
+  @media only screen and (min-height: 1100px) {
+    @content;
+  }
+}
+@mixin notebook {
+  @media only screen and (max-width: 1450px) {
+    @content;
+  }
+}
+@mixin notebook-small {
+  @media only screen and (max-width: 1330px) {
+    @content;
+  }
+}
+@mixin notebook-delimiter {
+  @media only screen and (max-width: 1450px) and (min-width: 1025px) {
+    @content;
+  }
+}
+@mixin ipad-landscape {
+  @media only screen 
+  and (min-width: 1024px) 
+  and (max-height: 1366px)
+  and (min-height: 1024px)
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1.5)
+  and (hover: none){
+    @content;
+  }
+}
+@mixin ipad-portrait {
+  @media only screen 
+  and (max-width: 1200px)
+  {
+    @content;
+  }
+}
+
+@mixin tablet-landscape {
+  @media only screen and (max-width: 1100px) 
+  and (min-width: 980px)
+  and (orientation: landscape) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media only screen and (max-width: 980px)
+  {
+    @content;
+  }
+}
+@mixin mobile {
+  @media only screen and (max-width: 767px){
+    @content;
+  }
+}

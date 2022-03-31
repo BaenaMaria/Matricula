@@ -1,0 +1,33 @@
+@import 'fonts';
+// Imports Constants
+@import 'functions';
+
+// Imports Constants
+@import 'grid';
+
+// Imports Test
+// @import 'test';
+
+// Import Pages Default 
+@import 'base';
+
+// Import Pages Home 
+@import 'pages/home';
+
+// Import Pages Conocenos 
+@import 'pages/conocenos';
+
+// Import Pages Metodologia 
+@import 'pages/metodologia';
+
+// Import Pages Becas 
+@import 'pages/becas';
+
+// Import Pages Master 
+@import 'pages/master';
+
+// Import Pages MBA 
+@import 'pages/mba';
+
+// Import Pages Tecnico 
+@import 'pages/tecnico';
