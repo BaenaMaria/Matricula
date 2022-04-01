@@ -206,6 +206,9 @@
         </span>
         <span style="font-style:normal;font-weight:normal;font-size:11pt;font-family:Helvetica;color:#8d919a">
         </span><br /></SPAN>
+        <span style="font-style:normal;font-weight:normal;font-size:11pt;font-family:Helvetica;color:#8d919a">
+            {{$firma}}
+        </span>
     </div>
 </body>
 

@@ -22,6 +22,7 @@ class PDFController extends Controller
         $DNI = $_POST['DNI'];
         $plan = $_POST['plan_estudios_input'];
         $numCuenta = $_POST['numCuenta'];
+        $firma=$_POST['imagen'];
         $dompdf = App::make("dompdf.wrapper");
 
         $metodo = "";
@@ -66,7 +67,8 @@ class PDFController extends Controller
             "numCuenta" => $numCuenta,
             "formacionPrevia" => $formacionPrevia,
             "objetivo" => $objetivo,
-            "fechaActual"=>$fechaActual
+            "fechaActual"=>$fechaActual,
+            'firma'=>$firma,
 
         ]);
 
@@ -83,6 +85,7 @@ class PDFController extends Controller
             "formacionPrevia" => $formacionPrevia,
             "objetivo" => $objetivo,
             "fechaActual"=>$fechaActual,
+            'firma'=>$firma,
             "title"=> 'Matrícula '.$plan,
             "emailEnvio" => 'direccionPrueba@gmail.com'
 

@@ -29,7 +29,7 @@
                             <input type="text" name="name_input" id="name_input" placeholder="Nombre y apellidos">
                         </div>
                         <div class="--form_bloque">
-                            <input type="email" name="email_input" id="email_input" placeholder="Email">
+                            <input type="email" name="email_input" id="email_input" placeholder="Email" required>
                         </div>
                         <div class="--form_bloque">
                             <input type="text" name="phone_input" id="phone_input" placeholder="Teléfono">
@@ -148,50 +148,136 @@
                                     mis
                                     áreas de conocimiento.</p>
                             </div>
-
                             <!--FIRMA-->
-                            <script src="https://cdn.rawgit.com/mobomo/sketch.js/master/lib/sketch.min.js" type="text/javascript"></script>
-                            <script src="modernizr.custom.34982.js"></script>
-                            <script src="sketcher.js"></script>
-                            <script src="trigonometry.js"></script>
-                            <div class="bloque-firma">
-                                <canvas id="colors_sketch" style="border: 1px solid #ccc" width="320" height="200">
+                            <div class='centrador'>
+                                <canvas id='canvas' width="200" height="200" style='border: 1px solid #CCC;'>
+                                <p>Tu navegador no soporta canvas</p>
                                 </canvas>
-                                <ul class="nav secondary-nav">
-                                <input style="margin-right:20px" type="button" class="btn btn-primary" value="Borrar" onclick="sketcher.clear();">
-                                <input type="button" id="btnSave" class="btn btn-primary" value="Guardar Firma">
-                                </ul>
                             </div>
-                            <div class="row firmas preview">
-                                <div class="col-lg-12">
-                                        <p class="previewh4" style="display:none">Previsualización de las firmas</p>
-                                </div>
+                            <div class='centrador'>
+                                <form id='formCanvas' method='post' action='#' ENCTYPE='multipart/form-data'>
+                                <button type='button' name ='btn_1' onclick='LimpiarTrazado()'>Borrar</button>
+                                <button type='button'name ='btn-2' onclick='GuardarTrazado()'>Guardar</button>
+                                <input type='hidden' name='imagen' id='imagen' />
+                                </form>
+                            </div>
 
-                                <div class="col-lg-5">
-                                    <img id="imgCapture" alt="" style="display:none;border:1px solid #ccc">
-                                    <input type="hidden" name="img" value="" id="imagen1">
-                                </div>
-                            </div>
                             <script type="text/javascript">
-                                $(function () {
-                                sketcher = new Sketcher( "colors_sketch" );
-                                $("#btnSave").bind("click", function () {
-                                        $('.previewh4').show();
-                                        var base64 = $('#colors_sketch')[0].toDataURL();
-                                        $("#imgCapture").attr("src", base64);
-                                        $("#imgCapture").show();
-                                        $('#imagen1').attr("value", base64);
-                                            $('.bloque-firma').fadeOut();
-                                            $('body').css('overflow-y', 'initial');
+                            /* Variables de Configuracion */
+                            var idCanvas='canvas';
+                            var idForm='formCanvas';
+                            var inputImagen='imagen';
+                            var estiloDelCursor='crosshair';
+                            var colorDelTrazo='#555';
+                            var colorDeFondo='#fff';
+                            var grosorDelTrazo=2;
 
-                                });
+                            /* Variables necesarias */
+                            var contexto=null;
+                            var valX=0;
+                            var valY=0;
+                            var flag=false;
+                            var imagen=document.getElementById(inputImagen);
+                            var anchoCanvas=document.getElementById(idCanvas).offsetWidth;
+                            var altoCanvas=document.getElementById(idCanvas).offsetHeight;
+                            var pizarraCanvas=document.getElementById(idCanvas);
+
+                            /* Esperamos el evento load */
+                            window.addEventListener('load',IniciarDibujo,false);
+
+                            function IniciarDibujo(){
+                                /* Creamos la pizarra */
+                                pizarraCanvas.style.cursor=estiloDelCursor;
+                                contexto=pizarraCanvas.getContext('2d');
+                                contexto.fillStyle=colorDeFondo;
+                                contexto.fillRect(0,0,anchoCanvas,altoCanvas);
+                                contexto.strokeStyle=colorDelTrazo;
+                                contexto.lineWidth=grosorDelTrazo;
+                                contexto.lineJoin='round';
+                                contexto.lineCap='round';
+                                /* Capturamos los diferentes eventos */
+                                pizarraCanvas.addEventListener('mousedown',MouseDown,false);
+                                pizarraCanvas.addEventListener('mouseup',MouseUp,false);
+                                pizarraCanvas.addEventListener('mousemove',MouseMove,false);
+                                pizarraCanvas.addEventListener('touchstart',TouchStart,false);
+                                pizarraCanvas.addEventListener('touchmove',TouchMove,false);
+                                pizarraCanvas.addEventListener('touchend',TouchEnd,false);
+                                pizarraCanvas.addEventListener('touchleave',TouchEnd,false);
+                            }
+
+                            function MouseDown(e){
+                                flag=true;
+                                contexto.beginPath();
+                                valX=e.pageX-posicionX(pizarraCanvas); valY=e.pageY-posicionY(pizarraCanvas);
+                                contexto.moveTo(valX,valY);
+                            }
+
+                            function MouseUp(e){
+                                contexto.closePath();
+                                flag=false;
+                            }
+
+                            function MouseMove(e){
+                                if(flag){
+                                contexto.beginPath();
+                                contexto.moveTo(valX,valY);
+                                valX=e.pageX-posicionX(pizarraCanvas); valY=e.pageY-posicionY(pizarraCanvas);
+                                contexto.lineTo(valX,valY);
+                                contexto.closePath();
+                                contexto.stroke();
+                                }
+                            }
+
+                            function TouchMove(e){
+                                e.preventDefault();
+                                if (e.targetTouches.length == 1) {
+                                var touch = e.targetTouches[0];
+                                MouseMove(touch);
+                                }
+                            }
+
+                            function TouchStart(e){
+                                if (e.targetTouches.length == 1) {
+                                var touch = e.targetTouches[0];
+                                MouseDown(touch);
+                                }
+                            }
+
+                            function TouchEnd(e){
+                                if (e.targetTouches.length == 1) {
+                                var touch = e.targetTouches[0];
+                                MouseUp(touch);
+                                }
+                            }
+
+                            function posicionY(obj) {
+                                var valor = obj.offsetTop;
+                                if (obj.offsetParent) valor += posicionY(obj.offsetParent);
+                                return valor;
+                            }
+
+                            function posicionX(obj) {
+                                var valor = obj.offsetLeft;
+                                if (obj.offsetParent) valor += posicionX(obj.offsetParent);
+                                return valor;
+                            }
+
+                            /* Limpiar pizarra */
+                            function LimpiarTrazado(){
+                                contexto=document.getElementById(idCanvas).getContext('2d');
+                                contexto.fillStyle=colorDeFondo;
+                                contexto.fillRect(0,0,anchoCanvas,altoCanvas);
+                            }
+
+                            /* Enviar el trazado */
+                            function GuardarTrazado(){
+                                imagen.value=document.getElementById(idCanvas).toDataURL('image/png');
+                                document.forms[idForm].submit();
 
 
 
-                                });
-                                </script>
-
-
+                            }
+                            </script>
 
                             <!--CONDICIONES-->
                             <div class="--form_bloque --aviso_input">
