@@ -148,6 +148,52 @@
                                     mis
                                     áreas de conocimiento.</p>
                             </div>
+
+                            <!--FIRMA-->
+                            <script src="https://cdn.rawgit.com/mobomo/sketch.js/master/lib/sketch.min.js" type="text/javascript"></script>
+                            <script src="modernizr.custom.34982.js"></script>
+                            <script src="sketcher.js"></script>
+                            <script src="trigonometry.js"></script>
+                            <div class="bloque-firma">
+                                <canvas id="colors_sketch" style="border: 1px solid #ccc" width="320" height="200">
+                                </canvas>
+                                <ul class="nav secondary-nav">
+                                <input style="margin-right:20px" type="button" class="btn btn-primary" value="Borrar" onclick="sketcher.clear();">
+                                <input type="button" id="btnSave" class="btn btn-primary" value="Guardar Firma">
+                                </ul>
+                            </div>
+                            <div class="row firmas preview">
+                                <div class="col-lg-12">
+                                        <p class="previewh4" style="display:none">Previsualización de las firmas</p>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <img id="imgCapture" alt="" style="display:none;border:1px solid #ccc">
+                                    <input type="hidden" name="img" value="" id="imagen1">
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                sketcher = new Sketcher( "colors_sketch" );
+                                $("#btnSave").bind("click", function () {
+                                        $('.previewh4').show();
+                                        var base64 = $('#colors_sketch')[0].toDataURL();
+                                        $("#imgCapture").attr("src", base64);
+                                        $("#imgCapture").show();
+                                        $('#imagen1').attr("value", base64);
+                                            $('.bloque-firma').fadeOut();
+                                            $('body').css('overflow-y', 'initial');
+
+                                });
+
+
+
+                                });
+                                </script>
+
+
+
+                            <!--CONDICIONES-->
                             <div class="--form_bloque --aviso_input">
                                 <p><input type="checkbox" name="aviso_input" id="aviso_input"> Acepto Términos y
                                     condiciones,

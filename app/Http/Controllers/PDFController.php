@@ -88,12 +88,18 @@ class PDFController extends Controller
 
 
         ];
-
+        //Email para ayudaT
         Mail::send('pdf', $data, function ($message) use ($data, $dompdf) {
-              $message->to($data["emailEnvio"], $data["emailEnvio"])
+              $message->to($data["emailEnvio"])
                 ->subject($data["title"])
-                ->attachData($dompdf->output(), "Matricula_pdf");
+                ->attachData($dompdf->output(), "Matrícula_pdf");
         });
+        //Email para usuario
+        Mail::send('pdf', $data, function ($message) use ($data, $dompdf) {
+            $message->to($data["email"])
+              ->subject($data["title"])
+              ->attachData($dompdf->output(), "Matrícula_pdf");
+      });
 
         return $dompdf->stream();
 
@@ -103,4 +109,8 @@ class PDFController extends Controller
 
 
     }
+
+
+
+
 }
